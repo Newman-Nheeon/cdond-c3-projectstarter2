@@ -28,7 +28,7 @@ commands:
                   name: Revert migrations
                   when: on_fail
                   command: |
-                      SUCCESS=$(curl --insecure  https://kvdb.io/BCkQQGfj9UgTpMpTV3sTdY/migration_<< parameters.workflow_id >>)
+                      SUCCESS=$(curl --insecure  https://kvdb.io/4h5LTL8Y51di9ZATQAivkn/migration_<< parameters.workflow_id >>)
                         # Logic for reverting the database state
                       if (( $SUCCESS == 1 ));
                       then
@@ -231,7 +231,7 @@ jobs:
                   command: |   
                       if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
                       then
-                          curl --insecure https://kvdb.io/BCkQQGfj9UgTpMpTV3sTdY/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+                          curl --insecure https://kvdb.io/4h5LTL8Y51di9ZATQAivkn/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
                           echo "migration complete -------"
                       else 
                           echo "no migration happened"
@@ -382,7 +382,7 @@ jobs:
                             list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
                             --no-paginate --output text)
                         echo "old workflow ID is: $OLD_WORKFLOW_ID"
-                       curl -k https://kvdb.io/BCkQQGfj9UgTpMpTV3sTdY/OLD_WORKFLOW_ID -d "${OLD_WORKFLOW_ID}"
+                       curl -k https://kvdb.io/4h5LTL8Y51di9ZATQAivkn/OLD_WORKFLOW_ID -d "${OLD_WORKFLOW_ID}"
             - run:
                   name: Update Cloudfront 
                   command:  |
@@ -418,7 +418,7 @@ jobs:
                         --stack-status-filter CREATE_COMPLETE --no-paginate --output text) 
                       echo Stack names: "${STACKS[@]}"
 
-                      export OldWorkflowID=$(curl --insecure https://kvdb.io/BCkQQGfj9UgTpMpTV3sTdY/OLD_WORKFLOW_ID)
+                      export OldWorkflowID=$(curl --insecure https://kvdb.io/4h5LTL8Y51di9ZATQAivkn/OLD_WORKFLOW_ID)
                       echo Old Workflow ID: $OldWorkflowID 
 
                       if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
