@@ -193,7 +193,7 @@ jobs:
                       pip install awscli
             - add_ssh_keys:
                   fingerprints:
-                      ["5d:68:50:50:19:a7:02:89:b3:81:26:79:bc:09:d4:a0"]
+                      ["67:64:1c:a9:af:fd:ef:eb:84:fa:28:9a:c1:31:77:22"]
             - attach_workspace:
                   at: ~/
             - run:
@@ -286,7 +286,7 @@ jobs:
         steps:
             - checkout
             - add_ssh_keys:
-                fingerprints: ["5d:68:50:50:19:a7:02:89:b3:81:26:79:bc:09:d4:a0"]
+                fingerprints: ["67:64:1c:a9:af:fd:ef:eb:84:fa:28:9a:c1:31:77:22"]
             - attach_workspace:
                 at: ~/          
             - run:
